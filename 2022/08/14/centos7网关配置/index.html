@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jksi.gitee.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":{"position":"left","width":300,"display":"always","padding":18}}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="打开虚拟机资源-&gt;点击虚拟网络编辑器 点击NAT模式的虚拟网络名称确保勾选了这两项之后点击右侧NAT设置记下来此处的信息，接下来要用。 先通过ip addr查看当前ip地址然后进入网关配置目录cd &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;然后输入ll查看配置文件名称叫什么然后输入vi ifcfg-ens160进行编辑 12345678910111213141516171">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos7网关配置">
+<meta property="og:url" content="https://jksi.gitee.io/2022/08/14/centos7%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="jksi的个人博客">
+<meta property="og:description" content="打开虚拟机资源-&gt;点击虚拟网络编辑器 点击NAT模式的虚拟网络名称确保勾选了这两项之后点击右侧NAT设置记下来此处的信息，接下来要用。 先通过ip addr查看当前ip地址然后进入网关配置目录cd &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;然后输入ll查看配置文件名称叫什么然后输入vi ifcfg-ens160进行编辑 12345678910111213141516171">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403860148-eece34d1-0048-4449-97a9-bb7438ccdfef.png">
+<meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403925672-a1fb224c-8760-48b3-adb9-d6a0b7df50c9.png">
+<meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403982306-706c2925-e8db-4c22-b881-9ee85a442173.png">
+<meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403457887-e1513e36-b484-4b16-9703-953bc658b69e.png">
+<meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403657227-faedbce0-b759-4d9f-8b07-29a4047662f7.png">
+<meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659404241051-99bc0aa9-4a6c-4a7b-ac8e-a6f86970dd84.png">
+<meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659404271525-684d8788-ce42-4762-b8b3-3ad66705e6e5.png">
+<meta property="article:published_time" content="2022-08-13T16:23:44.541Z">
+<meta property="article:modified_time" content="2022-08-13T17:11:08.523Z">
+<meta property="article:author" content="jks">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403860148-eece34d1-0048-4449-97a9-bb7438ccdfef.png">
+
+
+<link rel="canonical" href="https://jksi.gitee.io/2022/08/14/centos7%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-tw","comments":true,"permalink":"https://jksi.gitee.io/2022/08/14/centos7%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/","path":"2022/08/14/centos7网关配置/","title":"centos7网关配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>centos7网关配置 | jksi的个人博客</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jksi的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="jks"
+      src="/images/jax.jpg">
+  <p class="site-author-name" itemprop="name">jks</p>
+  <div class="site-description" itemprop="description">别赶路，去感受路</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jks-w" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jks-w" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wmyaoo@outlook.com" title="E-Mail → wmyaoo@outlook.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://jksi.gitee.io/2022/08/14/centos7%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/jax.jpg">
+      <meta itemprop="name" content="jks">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jksi的个人博客">
+      <meta itemprop="description" content="别赶路，去感受路">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="centos7网关配置 | jksi的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          centos7网关配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-14 00:23:44 / Modified: 01:11:08" itemprop="dateCreated datePublished" datetime="2022-08-14T00:23:44+08:00">2022-08-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>打开虚拟机资源-&gt;点击虚拟网络编辑器<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403860148-eece34d1-0048-4449-97a9-bb7438ccdfef.png"></p>
+<p>点击NAT模式的虚拟网络名称<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403925672-a1fb224c-8760-48b3-adb9-d6a0b7df50c9.png">确保勾选了这两项之后点击右侧NAT设置<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403982306-706c2925-e8db-4c22-b881-9ee85a442173.png">记下来此处的信息，接下来要用。</p>
+<p>先通过<code>ip addr</code>查看当前ip地址<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403457887-e1513e36-b484-4b16-9703-953bc658b69e.png">然后进入网关配置目录<br /><code>cd /etc/sysconfig/network-scripts/</code><br />然后输入<code>ll</code>查看配置文件名称叫什么<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403657227-faedbce0-b759-4d9f-8b07-29a4047662f7.png">然后输入<code>vi ifcfg-ens160</code>进行编辑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line">BOOTPROTO=static #静态</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=ens160</span><br><span class="line">UUID=77d68ab2-0808-4a75-b9ab-e0f1aa2b2d0c</span><br><span class="line">DEVICE=ens160</span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=192.168.238.130 # 子网ip，和刚刚记录的ip地址保持同一个网段</span><br><span class="line">PREFIX=24</span><br><span class="line">NETMASK=255.255.255.0 # 子网掩码，填刚才记录下的子网掩码</span><br><span class="line">GATEWAY=192.168.238.2 # 网关，也填刚才记录的网关地址</span><br><span class="line">DNS1=8.8.8.8</span><br><span class="line">DNS2=8.8.4.4</span><br><span class="line">NETWORKING=yes</span><br><span class="line">ZONE=public</span><br></pre></td></tr></table></figure>
+<p>然后按下<code>ESC</code>输入<code>:wq</code>保存并退出文件<br />重启<code>network</code>服务，输入<code>service network restart</code><br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659404241051-99bc0aa9-4a6c-4a7b-ac8e-a6f86970dd84.png">尝试ping一下<code>114.114.114.114</code><br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659404271525-684d8788-ce42-4762-b8b3-3ad66705e6e5.png">联网成功！！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/13/Vue.js%E2%80%94%E2%80%94coderwhy/" rel="prev" title="Vue.js——coderwhy">
+                  <i class="fa fa-chevron-left"></i> Vue.js——coderwhy
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jks</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

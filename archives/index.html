@@ -161,6 +161,80 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jksi.gitee.io/2022/08/14/centos7%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/jax.jpg">
+      <meta itemprop="name" content="jks">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jksi的个人博客">
+      <meta itemprop="description" content="别赶路，去感受路">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jksi的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/14/centos7%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">centos7网关配置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-14 00:23:44 / Modified: 01:11:08" itemprop="dateCreated datePublished" datetime="2022-08-14T00:23:44+08:00">2022-08-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>打开虚拟机资源-&gt;点击虚拟网络编辑器<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403860148-eece34d1-0048-4449-97a9-bb7438ccdfef.png"></p>
+<p>点击NAT模式的虚拟网络名称<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403925672-a1fb224c-8760-48b3-adb9-d6a0b7df50c9.png">确保勾选了这两项之后点击右侧NAT设置<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403982306-706c2925-e8db-4c22-b881-9ee85a442173.png">记下来此处的信息，接下来要用。</p>
+<p>先通过<code>ip addr</code>查看当前ip地址<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403457887-e1513e36-b484-4b16-9703-953bc658b69e.png">然后进入网关配置目录<br /><code>cd /etc/sysconfig/network-scripts/</code><br />然后输入<code>ll</code>查看配置文件名称叫什么<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403657227-faedbce0-b759-4d9f-8b07-29a4047662f7.png">然后输入<code>vi ifcfg-ens160</code>进行编辑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line">BOOTPROTO=static #静态</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=ens160</span><br><span class="line">UUID=77d68ab2-0808-4a75-b9ab-e0f1aa2b2d0c</span><br><span class="line">DEVICE=ens160</span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=192.168.238.130 # 子网ip，和刚刚记录的ip地址保持同一个网段</span><br><span class="line">PREFIX=24</span><br><span class="line">NETMASK=255.255.255.0 # 子网掩码，填刚才记录下的子网掩码</span><br><span class="line">GATEWAY=192.168.238.2 # 网关，也填刚才记录的网关地址</span><br><span class="line">DNS1=8.8.8.8</span><br><span class="line">DNS2=8.8.4.4</span><br><span class="line">NETWORKING=yes</span><br><span class="line">ZONE=public</span><br></pre></td></tr></table></figure>
+<p>然后按下<code>ESC</code>输入<code>:wq</code>保存并退出文件<br />重启<code>network</code>服务，输入<code>service network restart</code><br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659404241051-99bc0aa9-4a6c-4a7b-ac8e-a6f86970dd84.png">尝试ping一下<code>114.114.114.114</code><br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659404271525-684d8788-ce42-4762-b8b3-3ad66705e6e5.png">联网成功！！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://jksi.gitee.io/2022/08/13/Vue.js%E2%80%94%E2%80%94coderwhy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
