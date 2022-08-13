@@ -20,25 +20,80 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jksi.gitee.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":{"position":"left","width":300,"display":"always","padding":18}}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="别赶路，去感受路">
-<meta property="og:type" content="website">
-<meta property="og:title" content="jksi的个人博客">
-<meta property="og:url" content="https://jksi.gitee.io/archives/index.html">
+    <meta name="description" content="基础语法 认识VNode HTML元素创建出来的VNode VNode—-Virtue Node ， 也就是虚拟节点 VNode的本质是一个JavaScript对象   虚拟DOM一大堆元素会形成一个VNode Tree，而这个树结构，就是虚拟DOM  属性 template属性表示Vue需要帮助我们渲染的模板信息模板中的内容会替代div.app中的内容 12345678910111213141">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js——coderwhy">
+<meta property="og:url" content="https://jksi.gitee.io/2022/08/13/Vue.js%E2%80%94%E2%80%94coderwhy/index.html">
 <meta property="og:site_name" content="jksi的个人博客">
-<meta property="og:description" content="别赶路，去感受路">
+<meta property="og:description" content="基础语法 认识VNode HTML元素创建出来的VNode VNode—-Virtue Node ， 也就是虚拟节点 VNode的本质是一个JavaScript对象   虚拟DOM一大堆元素会形成一个VNode Tree，而这个树结构，就是虚拟DOM  属性 template属性表示Vue需要帮助我们渲染的模板信息模板中的内容会替代div.app中的内容 12345678910111213141">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/jpeg/27438755/1650457595708-63c41c46-0c50-44d6-b401-9ea789c486c2.jpeg">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1650291648950-e4b7c673-20db-4d1c-87c1-9389e83ef502.png#clientId=ufdfa5221-11b9-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=150&id=vLgvb&margin=%5Bobject%20Object%5D&name=image.png&originHeight=150&originWidth=709&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14948&status=done&style=none&taskId=uc9844ccd-5f6b-4c5a-8893-dd4672dc8c0&title=&width=710.1111145019531">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1650356889646-03a9af65-25ba-4f6a-9f2a-81d4f3881a85.png#clientId=u327469d3-7cc0-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=100&id=u1f6be02a&margin=%5Bobject%20Object%5D&name=image.png&originHeight=196&originWidth=1475&originalType=binary&ratio=1&rotation=0&showTitle=false&size=31011&status=done&style=none&taskId=ud0d17cbf-b75d-4274-b8ab-ed5438c3069&title=&width=751">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1650357090871-c3d65220-f094-4d78-b0dd-291204b24eda.png#clientId=u327469d3-7cc0-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=47&id=ud76c3209&margin=%5Bobject%20Object%5D&name=image.png&originHeight=106&originWidth=387&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6213&status=done&style=none&taskId=u817fb0e8-4eef-4a7e-b814-13ee5e4a2bc&title=&width=172">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1650716483978-ac920884-3b28-41b1-8155-1c532a4fdd6b.png#clientId=u84ba6269-620d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=200&id=u60efa62b&margin=%5Bobject%20Object%5D&name=image.png&originHeight=450&originWidth=1469&originalType=binary&ratio=1&rotation=0&showTitle=false&size=148164&status=done&style=none&taskId=u8c444dcb-cc27-483f-9366-d99dd76be9c&title=&width=652.8888888888889">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1650980931699-665f5a22-f288-49a3-9c85-ba25540f8088.png#clientId=u7db90082-5125-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=88&id=u73aa280d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=197&originWidth=565&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15404&status=done&style=none&taskId=ued93cdc4-463f-4f7b-b632-94b3da87ac7&title=&width=251.11111111111111">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651039279168-c4b43916-826f-4395-bfd1-6f4e9bb28c90.png#clientId=u70b4be20-2922-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=90&id=u846c7794&margin=%5Bobject%20Object%5D&name=image.png&originHeight=202&originWidth=1599&originalType=binary&ratio=1&rotation=0&showTitle=false&size=44759&status=done&style=none&taskId=u35bec338-8506-4a74-b6a5-05c929ae75b&title=&width=710.6666666666666">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651039898418-e7a61a43-2c80-44d8-8522-6d844ca0a9d7.png#clientId=u70b4be20-2922-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=587&id=uc44e95b4&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1634&originWidth=1324&originalType=binary&ratio=1&rotation=0&showTitle=false&size=177840&status=done&style=none&taskId=ufb295078-04af-4743-86d4-72a6a3b69db&title=&width=475.4444580078125">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651201228074-98d3e59a-1d11-40d0-9b7f-081ac35e0a6a.png#clientId=u7a8daffe-64bf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=522&id=u40f1e1ae&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1174&originWidth=1177&originalType=binary&ratio=1&rotation=0&showTitle=false&size=201386&status=done&style=none&taskId=ue24d84f2-0aee-4840-b65c-98637a7270b&title=&width=523.1111111111111">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651145510281-e30d9f17-a421-4cac-a625-a7392ded2c3e.png#clientId=u5e147bfb-76c2-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=158&id=u2d30b6b1&margin=%5Bobject%20Object%5D&name=image.png&originHeight=391&originWidth=1492&originalType=binary&ratio=1&rotation=0&showTitle=false&size=280749&status=done&style=none&taskId=ub1d33a65-e66d-445b-b8c6-0d03f5cf473&title=&width=602.8282479857485">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651201172548-86d734ef-6f8e-4cf5-9ff8-95f16e927d0d.png#clientId=u7a8daffe-64bf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=331&id=u171202e3&margin=%5Bobject%20Object%5D&name=image.png&originHeight=744&originWidth=2421&originalType=binary&ratio=1&rotation=0&showTitle=false&size=896166&status=done&style=none&taskId=u96726458-3192-4f65-84f8-026c3f9947a&title=&width=1076">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651201308048-69ad1c03-8e00-4c19-a385-a0de2f2539d6.png#clientId=u7a8daffe-64bf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=368&id=u7ab3a457&margin=%5Bobject%20Object%5D&name=image.png&originHeight=829&originWidth=1086&originalType=binary&ratio=1&rotation=0&showTitle=false&size=603554&status=done&style=none&taskId=u3f67aa90-9893-456b-8f99-d4ddd5ff533&title=&width=482.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651233415220-6150a1cf-6b15-41b2-b219-59c4d2e0a7de.png#clientId=u7a8daffe-64bf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=208&id=u05a39235&margin=%5Bobject%20Object%5D&name=image.png&originHeight=469&originWidth=2565&originalType=binary&ratio=1&rotation=0&showTitle=false&size=400805&status=done&style=none&taskId=u4dc6fc54-0e57-4c83-b28f-05feb3dfdb1&title=&width=1140">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651313250531-b0c03747-2aa9-4d1d-8110-14b2cc91fc20.png#clientId=uac070b41-6965-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=120&id=u90dbafe0&margin=%5Bobject%20Object%5D&name=image.png&originHeight=269&originWidth=614&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19402&status=done&style=none&taskId=u6515ce3a-a202-4cbb-8ee5-297cc811081&title=&width=272.8888888888889">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651402070438-fb8d24be-0675-4862-9fe2-e0fcbff69465.png#clientId=u45581d60-f950-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=147&id=u5e0b77e4&margin=%5Bobject%20Object%5D&name=image.png&originHeight=331&originWidth=514&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17543&status=done&style=none&taskId=u1a47b688-9316-4da0-80f1-fac53f53ff7&title=&width=228.44444444444446">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651540154628-d89f6ad5-b76b-403d-80c7-9bb23fc4d8b4.png#clientId=u67a4dc83-f5d1-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=167&id=u08b61e3b&margin=%5Bobject%20Object%5D&name=image.png&originHeight=376&originWidth=1086&originalType=binary&ratio=1&rotation=0&showTitle=false&size=54548&status=done&style=none&taskId=ud05fd408-6268-4e0f-bbb3-15186e6ae41&title=&width=482.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651659397724-fd7f3222-d22e-4e61-ac6e-f603eae7894e.png#clientId=u3f7b5959-3bbf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=433&id=ua6867dac&margin=%5Bobject%20Object%5D&name=image.png&originHeight=974&originWidth=2719&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1753636&status=done&style=none&taskId=u958c4498-dd62-4c63-badf-90e166ee665&title=&width=1208.4444444444443">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651660407753-a072f04e-59b3-4302-bc10-3412bba14b4c.png#clientId=u3f7b5959-3bbf-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=121&id=u500681f0&margin=%5Bobject%20Object%5D&name=image.png&originHeight=272&originWidth=831&originalType=binary&ratio=1&rotation=0&showTitle=false&size=23322&status=done&style=none&taskId=uc38239d1-6e24-4435-aa69-a3de020435e&title=&width=369.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651672829762-eb5357d6-60a8-45e6-abf1-968b25e09c4b.png#clientId=uc652ddf5-caf2-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=152&id=uc24546cc&margin=%5Bobject%20Object%5D&name=image.png&originHeight=343&originWidth=939&originalType=binary&ratio=1&rotation=0&showTitle=false&size=117438&status=done&style=none&taskId=ub5d32d8a-615c-4407-a319-7e0b4db9260&title=&width=417.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651739840090-ab37cd89-8b07-4bc1-8675-895fb4b27da0.png#clientId=u922b467b-0597-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=175&id=ub12653f1&margin=%5Bobject%20Object%5D&name=image.png&originHeight=432&originWidth=365&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19255&status=done&style=none&taskId=u53682f9e-a873-491c-b290-dc2608e89d1&title=&width=147.4747389509371">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651741175086-9ceb8488-e75e-4ac7-8128-8cc471cd87d8.png#clientId=u922b467b-0597-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=265&id=u248b6d21&margin=%5Bobject%20Object%5D&name=image.png&originHeight=655&originWidth=254&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17386&status=done&style=none&taskId=u57397fef-8155-491c-82b1-ec936669775&title=&width=102.62625669462473">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651742760863-65b65b89-770e-416e-aa04-18f59ebeb882.png#clientId=u922b467b-0597-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=373&id=u45a3bcbf&margin=%5Bobject%20Object%5D&name=image.png&originHeight=924&originWidth=2037&originalType=binary&ratio=1&rotation=0&showTitle=false&size=687975&status=done&style=none&taskId=u5608d457-44ae-4a2d-87f8-b57e203f673&title=&width=823.0302554604353">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651798186165-c86b7933-9787-4dba-830a-8d5bb8b0bba6.png#clientId=u1fb35aa4-4baa-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=67&id=ude238602&margin=%5Bobject%20Object%5D&name=image.png&originHeight=165&originWidth=741&originalType=binary&ratio=1&rotation=0&showTitle=false&size=16626&status=done&style=none&taskId=u30b3dd71-789a-4423-a59e-be740509a91&title=&width=299.3939220894367">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651798202942-28c8f1cb-121d-4e31-bb86-520c221cfc05.png#clientId=u1fb35aa4-4baa-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=67&id=ub4aa5b7b&margin=%5Bobject%20Object%5D&name=image.png&originHeight=165&originWidth=496&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11147&status=done&style=none&taskId=u11fffa8a-8aa5-4de3-bf38-dd533414fe3&title=&width=200.40402882099949">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651798227297-5b44388e-986e-43cc-b132-731bbe0c712e.png#clientId=u1fb35aa4-4baa-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=22&id=ufd2a1282&margin=%5Bobject%20Object%5D&name=image.png&originHeight=54&originWidth=1835&originalType=binary&ratio=1&rotation=0&showTitle=false&size=24178&status=done&style=none&taskId=u563c1f83-10cd-4048-814e-e798c315b22&title=&width=741.4140985615605">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651839691863-8a6cdc3b-cea5-47b4-aeea-07f7c6c6a5fb.png#clientId=ue08fd6e4-c3e6-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=214&id=u127ed6e8&margin=%5Bobject%20Object%5D&name=image.png&originHeight=640&originWidth=748&originalType=binary&ratio=1&rotation=0&showTitle=false&size=45078&status=done&style=none&taskId=u4d0e1788-0202-416f-880a-fc785ee3959&title=&width=250.2196807861328">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651839710051-e9285c64-650d-4f18-8e89-ebd37ebfa536.png#clientId=ue08fd6e4-c3e6-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=98&id=udd536345&margin=%5Bobject%20Object%5D&name=image.png&originHeight=260&originWidth=732&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20956&status=done&style=none&taskId=ua9693bd5-1173-48d5-a160-e55deb03165&title=&width=274.7569580078125">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651915573270-668393c7-d85f-4497-9c0d-ae4678f93cb4.png#clientId=u1d015fca-6677-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=242&id=ud8ac6abe&margin=%5Bobject%20Object%5D&name=image.png&originHeight=605&originWidth=1159&originalType=binary&ratio=1&rotation=0&showTitle=false&size=70733&status=done&style=none&taskId=ua4208e2c-7169-4523-be13-0df319f450d&title=&width=464.1111145019531">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651915632629-e1425f5e-99b4-4b95-a975-486110e95d02.png#clientId=u1d015fca-6677-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=122&id=u12be82d0&margin=%5Bobject%20Object%5D&name=image.png&originHeight=323&originWidth=1231&originalType=binary&ratio=1&rotation=0&showTitle=false&size=40887&status=done&style=none&taskId=ub543ede7-c9d8-4c61-b331-6128e62aa36&title=&width=465.1111145019531">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1651925534780-4e0702df-e7a1-4c4c-9bca-5c0bd23dcdbc.png#clientId=u1d015fca-6677-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=422&id=u4ba8ea56&margin=%5Bobject%20Object%5D&name=image.png&originHeight=950&originWidth=2211&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1187525&status=done&style=none&taskId=u93dad5be-98c6-4eb6-a67b-23d89a82efc&title=&width=982.6666666666666">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652001268221-a36f07cf-472b-4706-9f02-03f4583f2975.png#clientId=u5f91f561-3444-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=87&id=ue666487f&margin=%5Bobject%20Object%5D&name=image.png&originHeight=196&originWidth=1047&originalType=binary&ratio=1&rotation=0&showTitle=false&size=29249&status=done&style=none&taskId=u1622b6f8-ef82-412c-88a2-d91448707ab&title=&width=465.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652002158455-a2eb40ae-d37a-47aa-944b-81ceef2d3145.png#clientId=u5f91f561-3444-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=166&id=uba3f1437&margin=%5Bobject%20Object%5D&name=image.png&originHeight=374&originWidth=876&originalType=binary&ratio=1&rotation=0&showTitle=false&size=46170&status=done&style=none&taskId=u12aa4583-6513-4ed0-9054-0f4a1eedde1&title=&width=389.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652002189817-2b8886fe-417b-4621-ae66-9560fa8cfe22.png#clientId=u5f91f561-3444-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=393&id=uba9dbb4a&margin=%5Bobject%20Object%5D&name=image.png&originHeight=884&originWidth=2162&originalType=binary&ratio=1&rotation=0&showTitle=false&size=772975&status=done&style=none&taskId=u75686837-d823-4af3-8dbf-241a84d8a58&title=&width=960.8888888888889">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652171343105-ac0e6b6a-d109-4e09-99ff-0b0e4023cbc1.png#clientId=uac3dd3c4-1b91-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=150&id=ub03ea20a&margin=%5Bobject%20Object%5D&name=image.png&originHeight=337&originWidth=1115&originalType=binary&ratio=1&rotation=0&showTitle=false&size=63613&status=done&style=none&taskId=u782b1688-bc8f-4c27-a834-a083c175380&title=&width=495.55555555555554">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652186413881-3e7d15f5-c6ce-43f6-9ec5-951f30de3a87.png#clientId=uac3dd3c4-1b91-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=261&id=ud1be3371&margin=%5Bobject%20Object%5D&name=image.png&originHeight=588&originWidth=1056&originalType=binary&ratio=1&rotation=0&showTitle=false&size=51608&status=done&style=none&taskId=udf32f92a-2f7c-4aeb-8253-823f7007022&title=&width=469.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652246303730-7c78dd30-4579-493b-b9c6-33141d9f4e89.png#clientId=ub6ddc5b9-bd3d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=144&id=ua22f5b6a&margin=%5Bobject%20Object%5D&name=image.png&originHeight=325&originWidth=1972&originalType=binary&ratio=1&rotation=0&showTitle=false&size=211009&status=done&style=none&taskId=u7da5e0ae-c8e2-494e-814d-4906ec72092&title=&width=876.4444444444445">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652246321308-bad80613-e97c-4638-b53c-f78c6183fb65.png#clientId=ub6ddc5b9-bd3d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=387&id=ub28e6364&margin=%5Bobject%20Object%5D&name=image.png&originHeight=871&originWidth=2180&originalType=binary&ratio=1&rotation=0&showTitle=false&size=520512&status=done&style=none&taskId=u313ecde5-1e67-4658-8496-e5fb5ac8d7e&title=&width=968.8888888888889">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652321031732-9b448da7-8081-45e5-b53a-497cde813736.png#clientId=u4e186e6e-be97-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=77&id=u21d4312e&margin=%5Bobject%20Object%5D&name=image.png&originHeight=262&originWidth=1019&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8549&status=done&style=none&taskId=uebb1774d-8a20-40d5-9606-e32e15d57aa&title=&width=300.8888854980469">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652321823276-00b83a89-8412-4c76-b39c-a27100cc1c87.png#clientId=ue3ce1a3e-abfe-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=297&id=u0c61f20c&margin=%5Bobject%20Object%5D&name=image.png&originHeight=972&originWidth=655&originalType=binary&ratio=1&rotation=0&showTitle=false&size=79955&status=done&style=none&taskId=u8c9fd7c4-109d-41c0-97a7-2ddd496af67&title=&width=200.11111450195312">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652331236957-0c2311b1-a481-418b-82a4-637844b97217.png#clientId=ue3ce1a3e-abfe-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=92&id=u7c79ba60&margin=%5Bobject%20Object%5D&name=image.png&originHeight=206&originWidth=287&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14028&status=done&style=none&taskId=udc4ddb19-3640-4d63-8401-5874ee5cda5&title=&width=127.55555555555556">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652335961472-225f7455-e2c9-4f66-940e-d02fb988f85b.png#clientId=ud0828408-bc53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=382&id=u7060977f&margin=%5Bobject%20Object%5D&name=image.png&originHeight=859&originWidth=685&originalType=binary&ratio=1&rotation=0&showTitle=false&size=55569&status=done&style=none&taskId=u51ec1b49-b0bc-40b2-b532-a9e1a11c8eb&title=&width=304.44444444444446">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652351403512-93f0a98f-c550-4e4e-8b5d-d58458ad37b3.png#clientId=ud0828408-bc53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=288&id=ua25fe5b6&margin=%5Bobject%20Object%5D&name=image.png&originHeight=649&originWidth=880&originalType=binary&ratio=1&rotation=0&showTitle=false&size=70785&status=done&style=none&taskId=u46e20045-7d03-47c3-b6d7-d8ae0949468&title=&width=391.1111111111111">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652351458234-f2c77c59-6480-4f65-b1a8-5138d93f259f.png#clientId=ud0828408-bc53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=95&id=u3a5549ec&margin=%5Bobject%20Object%5D&name=image.png&originHeight=214&originWidth=2044&originalType=binary&ratio=1&rotation=0&showTitle=false&size=123979&status=done&style=none&taskId=u6fb2368d-a2cd-4a7a-91cb-4acae0196b3&title=&width=908.4444444444445">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652351776904-35d0060a-c756-4830-abb9-fc27f57def55.png#clientId=ud0828408-bc53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=337&id=u933ab797&margin=%5Bobject%20Object%5D&name=image.png&originHeight=759&originWidth=658&originalType=binary&ratio=1&rotation=0&showTitle=false&size=53858&status=done&style=none&taskId=u0e65efff-fe93-4721-b873-898bef57882&title=&width=292.44444444444446">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652352374275-320fbc64-2882-4fd1-92ca-798003d60fb9.png#clientId=ud0828408-bc53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=622&id=u36cbc106&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1399&originWidth=867&originalType=binary&ratio=1&rotation=0&showTitle=false&size=110753&status=done&style=none&taskId=ue9d1a45b-94af-439d-9eca-db0d057042a&title=&width=385.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652353764877-61e40fd4-35d2-43b6-af27-ef72b7452999.png#clientId=ud0828408-bc53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=332&id=u3aae6e55&margin=%5Bobject%20Object%5D&name=image.png&originHeight=767&originWidth=784&originalType=binary&ratio=1&rotation=0&showTitle=false&size=55997&status=done&style=none&taskId=ub1cad1ee-7410-47ca-b801-60f682a639c&title=&width=339.4444580078125">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652353775393-4cedfb86-3978-4bb3-817f-9f91ca361925.png#clientId=ud0828408-bc53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=36&id=u685aecf8&margin=%5Bobject%20Object%5D&name=image.png&originHeight=61&originWidth=584&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9760&status=done&style=none&taskId=uea1c9006-440a-4592-91ea-a4fb8a14452&title=&width=343.5555725097656">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652354590353-8838c644-53d8-48fb-84d4-408b29be33bb.png#clientId=ud0828408-bc53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=576&id=u7f96879d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1295&originWidth=1033&originalType=binary&ratio=1&rotation=0&showTitle=false&size=138541&status=done&style=none&taskId=u6bf323d8-7a9f-4c01-822c-7af54fa09ff&title=&width=459.1111111111111">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1652354677719-393041dc-b732-4f00-84f5-2412abf9179c.png#clientId=ud0828408-bc53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=43&id=u4984f792&margin=%5Bobject%20Object%5D&name=image.png&originHeight=96&originWidth=1389&originalType=binary&ratio=1&rotation=0&showTitle=false&size=33633&status=done&style=none&taskId=ub60cd282-4545-4516-8763-ed9ec06311f&title=&width=617.3333333333334">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1653109333575-3f790667-22d4-4a93-bf36-28d69a6adc74.png#clientId=ucc22d628-7f1b-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=46&id=ub8b726dd&margin=%5Bobject%20Object%5D&name=image.png&originHeight=103&originWidth=1032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=25518&status=done&style=none&taskId=u618fc9fa-d02e-411f-80f8-2d37164c185&title=&width=458.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1653109373598-ef75bba8-9306-47f3-9e66-9ff6d386c4e8.png#clientId=ucc22d628-7f1b-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=94&id=ud3e34dfb&margin=%5Bobject%20Object%5D&name=image.png&originHeight=212&originWidth=1045&originalType=binary&ratio=1&rotation=0&showTitle=false&size=40320&status=done&style=none&taskId=u3b81095f-8ede-40be-9fe6-44704ec3d6e&title=&width=464.44444444444446">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/27438755/1653113466280-947c53a5-efec-4142-a1b3-d727cffbf350.png#clientId=ucc22d628-7f1b-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=151&id=ubc6a69e8&margin=%5Bobject%20Object%5D&name=image.png&originHeight=340&originWidth=1723&originalType=binary&ratio=1&rotation=0&showTitle=false&size=163157&status=done&style=none&taskId=u88172198-c95d-4044-b1fa-df6c552dee0&title=&width=765.7777777777778">
+<meta property="article:published_time" content="2022-08-13T15:25:24.000Z">
+<meta property="article:modified_time" content="2022-08-13T15:26:11.117Z">
 <meta property="article:author" content="jks">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/jpeg/27438755/1650457595708-63c41c46-0c50-44d6-b401-9ea789c486c2.jpeg">
 
 
-<link rel="canonical" href="https://jksi.gitee.io/archives/">
+<link rel="canonical" href="https://jksi.gitee.io/2022/08/13/Vue.js%E2%80%94%E2%80%94coderwhy/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-tw","comments":"","permalink":"","path":"archives/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-tw","comments":true,"permalink":"https://jksi.gitee.io/2022/08/13/Vue.js%E2%80%94%E2%80%94coderwhy/","path":"2022/08/13/Vue.js——coderwhy/","title":"Vue.js——coderwhy"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>jksi的个人博客</title>
+<title>Vue.js——coderwhy | jksi的个人博客</title>
   
 
 
@@ -65,7 +120,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">jksi的个人博客</h1>
+      <p class="site-title">jksi的个人博客</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -93,7 +148,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -106,6 +161,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86VNode"><span class="nav-number">1.1.</span> <span class="nav-text">认识VNode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9FDOM"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#template%E5%B1%9E%E6%80%A7"><span class="nav-number">1.3.1.</span> <span class="nav-text">template属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data%E5%B1%9E%E6%80%A7"><span class="nav-number">1.3.2.</span> <span class="nav-text">data属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#methods%E5%B1%9E%E6%80%A7"><span class="nav-number">1.3.3.</span> <span class="nav-text">methods属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E6%80%A7%EF%BC%9A"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">概念性：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93"><span class="nav-number">1.4.</span> <span class="nav-text">条件渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-if"><span class="nav-number">1.4.1.</span> <span class="nav-text">v-if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-else"><span class="nav-number">1.4.2.</span> <span class="nav-text">v-else</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-else-if"><span class="nav-number">1.4.3.</span> <span class="nav-text">v-else-if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-show"><span class="nav-number">1.4.4.</span> <span class="nav-text">v-show</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#v-show%E5%92%8Cv-if%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E9%80%89%E6%8B%A9"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">v-show和v-if的区别与选择</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93"><span class="nav-number">1.5.</span> <span class="nav-text">列表渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-for"><span class="nav-number">1.5.1.</span> <span class="nav-text">v-for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%9B%B4%E6%96%B0%E6%A3%80%E6%B5%8B"><span class="nav-number">1.5.2.</span> <span class="nav-text">数组更新检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-for%E4%B8%AD%E7%9A%84key%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">v-for中的key的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5F%E7%9A%84%E6%A1%88%E4%BE%8B"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">插入F的案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%95%99%E4%B8%8B%E9%97%AE%E9%A2%98"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">留下问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-1"><span class="nav-number">1.6.</span> <span class="nav-text">基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mustache%E5%8F%8C%E5%A4%A7%E6%8B%AC%E5%8F%B7%E8%AF%AD%E6%B3%95"><span class="nav-number">1.6.1.</span> <span class="nav-text">Mustache双大括号语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%95%99%E4%B8%8B%E9%97%AE%E9%A2%98-1"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">留下问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-once%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.2.</span> <span class="nav-text">v-once指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-text%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.3.</span> <span class="nav-text">v-text指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-html%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.4.</span> <span class="nav-text">v-html指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-pre%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.5.</span> <span class="nav-text">v-pre指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-cloak%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.6.</span> <span class="nav-text">v-cloak指令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-bind"><span class="nav-number">1.7.</span> <span class="nav-text">v-bind</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E5%9F%BA%E6%9C%AC%E5%B1%9E%E6%80%A7"><span class="nav-number">1.7.1.</span> <span class="nav-text">绑定基本属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9Aclass"><span class="nav-number">1.7.2.</span> <span class="nav-text">绑定class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9Astyle"><span class="nav-number">1.7.3.</span> <span class="nav-text">绑定style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E7%BB%91%E5%AE%9A%E5%B1%9E%E6%80%A7"><span class="nav-number">1.7.4.</span> <span class="nav-text">动态绑定属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-on"><span class="nav-number">1.8.</span> <span class="nav-text">v-on</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-on%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.8.1.</span> <span class="nav-text">v-on基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-on%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-number">1.8.2.</span> <span class="nav-text">v-on参数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-on%E4%BF%AE%E9%A5%B0%E7%AC%A6%EF%BC%88%E5%AF%B9%E4%BA%8B%E4%BB%B6%E8%BF%9B%E8%A1%8C%E7%89%B9%E6%AE%8A%E5%A4%84%E7%90%86%EF%BC%89"><span class="nav-number">1.8.3.</span> <span class="nav-text">v-on修饰符（对事件进行特殊处理）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82data%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">1.9.</span> <span class="nav-text">复杂data的处理方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7computed"><span class="nav-number">1.9.1.</span> <span class="nav-text">认识计算属性computed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84setter%E5%92%8Cgetter"><span class="nav-number">1.9.2.</span> <span class="nav-text">计算属性的setter和getter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86%E4%BE%A6%E5%90%AC%E5%99%A8watch"><span class="nav-number">1.10.</span> <span class="nav-text">认识侦听器watch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%95%99%E4%B8%8B%E9%97%AE%E9%A2%98-2"><span class="nav-number">1.10.0.1.</span> <span class="nav-text">留下问题</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue3%E7%9A%84%E8%A1%A8%E5%8D%95%E5%92%8C%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">Vue3的表单和开发模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v-model"><span class="nav-number">2.1.</span> <span class="nav-text">v-model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85"><span class="nav-number">2.1.1.</span> <span class="nav-text">知识补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model%E7%BB%91%E5%AE%9A%E5%85%B6%E4%BB%96%E8%A1%A8%E5%8D%95"><span class="nav-number">2.1.2.</span> <span class="nav-text">v-model绑定其他表单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model%E4%BF%AE%E9%A5%B0%E7%AC%A6-lazy"><span class="nav-number">2.1.3.</span> <span class="nav-text">v-model修饰符-lazy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model%E4%BF%AE%E9%A5%B0%E7%AC%A6-number"><span class="nav-number">2.1.4.</span> <span class="nav-text">v-model修饰符-number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model%E4%BF%AE%E9%A5%B0%E7%AC%A6-trim"><span class="nav-number">2.1.5.</span> <span class="nav-text">v-model修饰符-trim</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91"><span class="nav-number">2.2.</span> <span class="nav-text">组件化开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%85%A8%E5%B1%80%E7%BB%84%E4%BB%B6"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建全局组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E5%90%8D%E7%A7%B0"><span class="nav-number">2.2.2.</span> <span class="nav-text">组件的名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E5%B1%80%E9%83%A8%E7%BB%84%E4%BB%B6"><span class="nav-number">2.2.3.</span> <span class="nav-text">注册局部组件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Webpack%E5%9F%BA%E7%A1%80%E6%89%93%E5%8C%85"><span class="nav-number">3.</span> <span class="nav-text">Webpack基础打包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">webpack安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack%E9%BB%98%E8%AE%A4%E6%89%93%E5%8C%85"><span class="nav-number">3.1.1.</span> <span class="nav-text">webpack默认打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%B1%80%E9%83%A8%E7%9A%84webpack"><span class="nav-number">3.1.2.</span> <span class="nav-text">创建局部的webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.1.3.</span> <span class="nav-text">指定配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack%E7%9A%84%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB"><span class="nav-number">3.1.4.</span> <span class="nav-text">Webpack的依赖关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E6%A0%B7%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">打包样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#css-loader"><span class="nav-number">3.2.1.</span> <span class="nav-text">css-loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#style-loader"><span class="nav-number">3.2.2.</span> <span class="nav-text">style-loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#postCSS"><span class="nav-number">3.2.3.</span> <span class="nav-text">postCSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#postcss-preset-env"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">postcss-preset-env</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E5%9B%BE%E7%89%87"><span class="nav-number">3.3.</span> <span class="nav-text">打包图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#file-loader"><span class="nav-number">3.3.1.</span> <span class="nav-text">file-loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="nav-number">3.3.2.</span> <span class="nav-text">文件命名规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AD%98%E6%94%BE%E8%B7%AF%E5%BE%84"><span class="nav-number">3.3.3.</span> <span class="nav-text">设置文件存放路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url-loader"><span class="nav-number">3.3.4.</span> <span class="nav-text">url-loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#asset-module-type%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.3.5.</span> <span class="nav-text">asset module type的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url-loader%E7%9A%84limit%E6%95%88%E6%9E%9C"><span class="nav-number">3.3.6.</span> <span class="nav-text">url-loader的limit效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E5%AD%97%E4%BD%93"><span class="nav-number">3.4.</span> <span class="nav-text">打包字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86Plugins"><span class="nav-number">3.5.</span> <span class="nav-text">认识Plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CleanWebpackPlugin"><span class="nav-number">3.5.1.</span> <span class="nav-text">CleanWebpackPlugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HtmlWebpackPlugin"><span class="nav-number">3.5.2.</span> <span class="nav-text">HtmlWebpackPlugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DefinePlugin"><span class="nav-number">3.5.3.</span> <span class="nav-text">DefinePlugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CopyWebpackPlugin"><span class="nav-number">3.5.4.</span> <span class="nav-text">CopyWebpackPlugin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mode%E9%85%8D%E7%BD%AE"><span class="nav-number">3.6.</span> <span class="nav-text">mode配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Babel"><span class="nav-number">3.7.</span> <span class="nav-text">Babel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Babel%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">3.8.</span> <span class="nav-text">Babel命令行使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Babel%E7%9A%84%E9%A2%84%E8%AE%BEpreset"><span class="nav-number">3.9.</span> <span class="nav-text">Babel的预设preset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Babel%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.10.</span> <span class="nav-text">Babel的配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue"><span class="nav-number">3.11.</span> <span class="nav-text">Vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#App-vue%E6%89%93%E5%8C%85"><span class="nav-number">3.12.</span> <span class="nav-text">App.vue打包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#devServer%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">3.13.</span> <span class="nav-text">devServer的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#proxy"><span class="nav-number">3.13.1.</span> <span class="nav-text">proxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#changeOrigin"><span class="nav-number">3.13.2.</span> <span class="nav-text">changeOrigin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#historyApiFallback"><span class="nav-number">3.13.3.</span> <span class="nav-text">historyApiFallback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resolve%E6%A8%A1%E5%9D%97%E8%A7%A3%E6%9E%90"><span class="nav-number">3.13.4.</span> <span class="nav-text">resolve模块解析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VueCLI"><span class="nav-number">4.</span> <span class="nav-text">VueCLI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vite"><span class="nav-number">5.</span> <span class="nav-text">Vite</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vite%E5%AF%B9css%E3%80%81less%E3%80%81postcss%E7%9A%84%E6%94%AF%E6%8C%81"><span class="nav-number">5.1.</span> <span class="nav-text">vite对css、less、postcss的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vite%E5%AF%B9TypeScript%E7%9A%84%E6%94%AF%E6%8C%81"><span class="nav-number">5.2.</span> <span class="nav-text">vite对TypeScript的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vite%E5%AF%B9Vue%E7%9A%84%E6%94%AF%E6%8C%81"><span class="nav-number">5.3.</span> <span class="nav-text">vite对Vue的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vite%E7%9A%84%E6%89%93%E5%8C%85%E5%92%8C%E9%A2%84%E8%A7%88"><span class="nav-number">5.4.</span> <span class="nav-text">vite的打包和预览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vite%E8%84%9A%E6%89%8B%E6%9E%B6"><span class="nav-number">5.5.</span> <span class="nav-text">vite脚手架</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue%E7%9A%84%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91"><span class="nav-number">6.</span> <span class="nav-text">vue的组件化开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%8B%86%E5%88%86%E4%B8%8E%E5%B5%8C%E5%A5%97"><span class="nav-number">6.1.</span> <span class="nav-text">组件的拆分与嵌套</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84css%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">6.2.</span> <span class="nav-text">组件的css作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%B6%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E5%AD%90%E7%BB%84%E4%BB%B6"><span class="nav-number">6.3.</span> <span class="nav-text">父组件传递子组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E7%88%B6%E7%BB%84%E4%BB%B6"><span class="nav-number">6.4.</span> <span class="nav-text">子组件传递父组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E9%AA%8C%E8%AF%81"><span class="nav-number">6.5.</span> <span class="nav-text">自定义事件的参数验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E9%80%9A%E4%BF%A1"><span class="nav-number">6.6.</span> <span class="nav-text">非父子组件的通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BFmitt%E5%BA%93"><span class="nav-number">6.7.</span> <span class="nav-text">全局事件总线mitt库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86%E6%8F%92%E6%A7%BDSlot"><span class="nav-number">6.8.</span> <span class="nav-text">认识插槽Slot</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E6%A7%BD%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">6.8.1.</span> <span class="nav-text">插槽的基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E6%8F%92%E6%A7%BD%E7%9A%84%E4%BD%BF%E7%94%A8-gt-%E5%85%B7%E5%90%8D%E6%8F%92%E6%A7%BD%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">6.8.2.</span> <span class="nav-text">多个插槽的使用-&gt;具名插槽的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%8F%92%E6%A7%BD%E5%90%8D"><span class="nav-number">6.8.3.</span> <span class="nav-text">动态插槽名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">6.9.</span> <span class="nav-text">渲染作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD"><span class="nav-number">6.10.</span> <span class="nav-text">作用域插槽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">6.11.</span> <span class="nav-text">动态组件的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#keep-alive"><span class="nav-number">6.11.1.</span> <span class="nav-text">keep-alive</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">6.12.</span> <span class="nav-text">异步组件的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#refs%E7%9A%84%E4%BD%BF%E7%94%A8%E3%80%81-parent%E3%80%81-root"><span class="nav-number">6.13.</span> <span class="nav-text">refs的使用、$parent、$root</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">6.14.</span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">6.15.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84v-model"><span class="nav-number">6.16.</span> <span class="nav-text">组件的v-model</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue3%E8%BF%87%E5%BA%A6-amp-%E5%8A%A8%E7%94%BB%E5%AE%9E%E7%8E%B0"><span class="nav-number">7.</span> <span class="nav-text">Vue3过度&amp;动画实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#transition%E7%BB%84%E4%BB%B6"><span class="nav-number">7.1.</span> <span class="nav-text">transition组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E5%8A%A8%E7%94%BBclass"><span class="nav-number">7.2.</span> <span class="nav-text">过渡动画class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1css%E5%8A%A8%E7%94%BB"><span class="nav-number">7.3.</span> <span class="nav-text">过渡css动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mode%E5%B1%9E%E6%80%A7"><span class="nav-number">7.4.</span> <span class="nav-text">mode属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#animate-css"><span class="nav-number">7.5.</span> <span class="nav-text">animate.css</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gsap%E5%BA%93"><span class="nav-number">7.6.</span> <span class="nav-text">gsap库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mixin"><span class="nav-number">8.</span> <span class="nav-text">Mixin</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mixin%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">8.1.</span> <span class="nav-text">Mixin基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mixin%E5%90%88%E5%B9%B6%E8%A7%84%E5%88%99"><span class="nav-number">8.2.</span> <span class="nav-text">Mixin合并规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E6%B7%B7%E5%85%A5Mixin"><span class="nav-number">8.3.</span> <span class="nav-text">全局混入Mixin</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Composition-API"><span class="nav-number">9.</span> <span class="nav-text">Composition API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#setup-%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="nav-number">9.1.</span> <span class="nav-text">setup()函数参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setup%E4%BC%A0%E5%9B%9E%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">9.2.</span> <span class="nav-text">setup传回的返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reactive-API"><span class="nav-number">9.3.</span> <span class="nav-text">Reactive API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref-API"><span class="nav-number">9.4.</span> <span class="nav-text">Ref API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Readonly"><span class="nav-number">9.5.</span> <span class="nav-text">Readonly</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#toRefs%E5%92%8CtoRef%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">9.6.</span> <span class="nav-text">toRefs和toRef的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#customRef"><span class="nav-number">9.7.</span> <span class="nav-text">customRef</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#computed%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7"><span class="nav-number">9.8.</span> <span class="nav-text">computed计算属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watchEffect%E5%92%8Cwatch"><span class="nav-number">9.9.</span> <span class="nav-text">watchEffect和watch</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -151,16 +207,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="https://jksi.gitee.io/2022/08/13/Vue.js%E2%80%94%E2%80%94coderwhy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -174,13 +231,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jksi的个人博客">
+      <meta itemprop="name" content="Vue.js——coderwhy | jksi的个人博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/13/Vue.js%E2%80%94%E2%80%94coderwhy/" class="post-title-link" itemprop="url">Vue.js——coderwhy</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Vue.js——coderwhy
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -204,7 +261,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><a name="sqKOY"></a></p>
+        <p><a name="sqKOY"></a></p>
 <h1 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h1><p><a name="Zk2ka"></a></p>
 <h2 id="认识VNode"><a href="#认识VNode" class="headerlink" title="认识VNode"></a>认识VNode</h2><ul>
 <li>HTML元素创建出来的VNode</li>
@@ -665,7 +722,6 @@
 <p>watchEffect的使用</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line"> * @LastEditTime: 2022-05-21 14:09:20</span><br><span class="line"> * @FilePath: \Learn-Vue\04_learn_composition\src\04_computed和watch\App.vue</span><br><span class="line">--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h2&gt;&#123;&#123;name&#125;&#125;-&#123;&#123;num&#125;&#125;&lt;/h2&gt;</span><br><span class="line">        &lt;button @click=&quot;changeName&quot;&gt;changeName&lt;/button&gt;</span><br><span class="line">        &lt;button @click=&quot;changeNum&quot;&gt;num+1&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    import &#123; ref, watchEffect&#125; from &#x27;vue&#x27;;</span><br><span class="line">    export default &#123;</span><br><span class="line">        setup() &#123;</span><br><span class="line">            const name = ref(&quot;SUBARU&quot;);</span><br><span class="line">            const num = ref(1);</span><br><span class="line"></span><br><span class="line">            const changeName = () =&gt; name.value = &quot;Audi&quot;;</span><br><span class="line">            const changeNum = () =&gt; num.value++;</span><br><span class="line"></span><br><span class="line">            watchEffect(() =&gt; &#123;</span><br><span class="line">                console.log(&quot;name:&quot;, name.value, &quot;num:&quot;, num.value);</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">            return&#123;</span><br><span class="line">                name,</span><br><span class="line">                num,</span><br><span class="line">                changeName,</span><br><span class="line">                changeNum</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
@@ -673,160 +729,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/13/My-new-hexo-blog/" rel="prev" title="My new hexo-blog">
+                  <i class="fa fa-chevron-left"></i> My new hexo-blog
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jksi.gitee.io/2022/08/13/My-new-hexo-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/jax.jpg">
-      <meta itemprop="name" content="jks">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jksi的个人博客">
-      <meta itemprop="description" content="别赶路，去感受路">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jksi的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/13/My-new-hexo-blog/" class="post-title-link" itemprop="url">My new hexo-blog</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-08-13 16:55:34" itemprop="dateCreated datePublished" datetime="2022-08-13T16:55:34+08:00">2022-08-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jksi.gitee.io/2022/08/13/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/jax.jpg">
-      <meta itemprop="name" content="jks">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jksi的个人博客">
-      <meta itemprop="description" content="别赶路，去感受路">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jksi的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/13/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-08-13 16:38:36" itemprop="dateCreated datePublished" datetime="2022-08-13T16:38:36+08:00">2022-08-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
