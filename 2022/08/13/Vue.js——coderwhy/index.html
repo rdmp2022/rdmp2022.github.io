@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"rdmp2022.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":{"position":"left","width":300,"display":"always","padding":18}}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="基础语法 认识VNode HTML元素创建出来的VNode VNode—-Virtue Node ， 也就是虚拟节点 VNode的本质是一个JavaScript对象   虚拟DOM一大堆元素会形成一个VNode Tree，而这个树结构，就是虚拟DOM  属性 template属性表示Vue需要帮助我们渲染的模板信息模板中的内容会替代div.app中的内容 12345678910111213141">
+    <meta name="description" content="一场并未结束的前段路程，对于是否能成为一名全栈而铺路。笔记来自coderwhy老师的vue3课程，懂得都懂，课的质量没话说。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue.js——coderwhy">
 <meta property="og:url" content="https://rdmp2022.github.io/2022/08/13/Vue.js%E2%80%94%E2%80%94coderwhy/index.html">
 <meta property="og:site_name" content="yddy的个人博客">
-<meta property="og:description" content="基础语法 认识VNode HTML元素创建出来的VNode VNode—-Virtue Node ， 也就是虚拟节点 VNode的本质是一个JavaScript对象   虚拟DOM一大堆元素会形成一个VNode Tree，而这个树结构，就是虚拟DOM  属性 template属性表示Vue需要帮助我们渲染的模板信息模板中的内容会替代div.app中的内容 12345678910111213141">
+<meta property="og:description" content="一场并未结束的前段路程，对于是否能成为一名全栈而铺路。笔记来自coderwhy老师的vue3课程，懂得都懂，课的质量没话说。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/20220815010738.png">
 <meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1650291648950-e4b7c673-20db-4d1c-87c1-9389e83ef502.png">
@@ -80,7 +80,7 @@
 <meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1653109373598-ef75bba8-9306-47f3-9e66-9ff6d386c4e8.png">
 <meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1653113466280-947c53a5-efec-4142-a1b3-d727cffbf350.png">
 <meta property="article:published_time" content="2022-08-13T15:25:24.000Z">
-<meta property="article:modified_time" content="2022-08-14T17:07:53.238Z">
+<meta property="article:modified_time" content="2022-08-15T10:57:49.392Z">
 <meta property="article:author" content="yddy">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/20220815010738.png">
@@ -245,7 +245,7 @@
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="Vue.js——coderwhy | yddy的个人博客">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="一场并未结束的前段路程，对于是否能成为一名全栈而铺路。笔记来自coderwhy老师的vue3课程，懂得都懂，课的质量没话说。">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -267,12 +267,28 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-08-15 01:07:53" itemprop="dateModified" datetime="2022-08-15T01:07:53+08:00">2022-08-15</time>
+      <time title="Modified: 2022-08-15 18:57:49" itemprop="dateModified" datetime="2022-08-15T18:57:49+08:00">2022-08-15</time>
     </span>
 
   
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>44k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1:13</span>
+    </span>
 </div>
 
+            <div class="post-description">一场并未结束的前段路程，对于是否能成为一名全栈而铺路。笔记来自coderwhy老师的vue3课程，懂得都懂，课的质量没话说。</div>
         </div>
       </header>
 
@@ -784,6 +800,20 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">yddy</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Symbols count total">44k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:14</span>
+  </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>

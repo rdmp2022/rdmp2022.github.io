@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"rdmp2022.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":{"position":"left","width":300,"display":"always","padding":18}}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="打开虚拟机资源-&gt;点击虚拟网络编辑器 点击NAT模式的虚拟网络名称确保勾选了这两项之后点击右侧NAT设置记下来此处的信息，接下来要用。 先通过ip addr查看当前ip地址然后进入网关配置目录cd &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;然后输入ll查看配置文件名称叫什么然后输入vi ifcfg-ens160进行编辑 12345678910111213141516171">
+    <meta name="description" content="Linux-CentOS7首次搭建的网管配置——可以在每次开启虚拟机时保证IP地址不变">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos7网关配置">
 <meta property="og:url" content="https://rdmp2022.github.io/2022/08/14/centos7%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="yddy的个人博客">
-<meta property="og:description" content="打开虚拟机资源-&gt;点击虚拟网络编辑器 点击NAT模式的虚拟网络名称确保勾选了这两项之后点击右侧NAT设置记下来此处的信息，接下来要用。 先通过ip addr查看当前ip地址然后进入网关配置目录cd &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;然后输入ll查看配置文件名称叫什么然后输入vi ifcfg-ens160进行编辑 12345678910111213141516171">
+<meta property="og:description" content="Linux-CentOS7首次搭建的网管配置——可以在每次开启虚拟机时保证IP地址不变">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403860148-eece34d1-0048-4449-97a9-bb7438ccdfef.png">
 <meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403925672-a1fb224c-8760-48b3-adb9-d6a0b7df50c9.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659404241051-99bc0aa9-4a6c-4a7b-ac8e-a6f86970dd84.png">
 <meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659404271525-684d8788-ce42-4762-b8b3-3ad66705e6e5.png">
 <meta property="article:published_time" content="2022-08-13T16:23:44.541Z">
-<meta property="article:modified_time" content="2022-08-13T17:11:08.523Z">
+<meta property="article:modified_time" content="2022-08-15T10:56:12.332Z">
 <meta property="article:author" content="yddy">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1659403860148-eece34d1-0048-4449-97a9-bb7438ccdfef.png">
@@ -199,7 +199,7 @@
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="centos7网关配置 | yddy的个人博客">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Linux-CentOS7首次搭建的网管配置——可以在每次开启虚拟机时保证IP地址不变">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -213,14 +213,36 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-08-14 00:23:44 / Modified: 01:11:08" itemprop="dateCreated datePublished" datetime="2022-08-14T00:23:44+08:00">2022-08-14</time>
+      <time title="Created: 2022-08-14 00:23:44" itemprop="dateCreated datePublished" datetime="2022-08-14T00:23:44+08:00">2022-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-08-15 18:56:12" itemprop="dateModified" datetime="2022-08-15T18:56:12+08:00">2022-08-15</time>
     </span>
 
   
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>737</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
 </div>
 
+            <div class="post-description">Linux-CentOS7首次搭建的网管配置——可以在每次开启虚拟机时保证IP地址不变</div>
         </div>
       </header>
 
@@ -276,6 +298,20 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">yddy</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Symbols count total">44k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:14</span>
+  </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
