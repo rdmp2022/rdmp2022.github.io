@@ -4,6 +4,64 @@
   
     
     <entry>
+      <title>Hexo Next Gemini侧边栏不显示问题</title>
+      <link href="/2022/08/16/Hexo%20Next%20Gemini%E4%BE%A7%E8%BE%B9%E6%A0%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/"/>
+      <url>/2022/08/16/Hexo%20Next%20Gemini%E4%BE%A7%E8%BE%B9%E6%A0%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>查看控制台报错显示如下<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1660576002287-276c0fb2-0f2d-4684-bd4d-1aceba06aab9.png">可见代码报错在<code>motion.js:113</code>此处<br />印象里配置文件中有motion这一项<br />在主题配置文件<code>_config.next.yml</code>中找到motion配置项，显示如下<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1660608354461-aec05371-a606-4563-ae5a-eb31667603a6.png"></p><p>在此处将<code>enable: true</code>改为<code>enable: false</code></p><p>问题解决。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> blog </tag>
+            
+            <tag> bug </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Github无法访问时，能用到的工具</title>
+      <link href="/2022/08/16/Github%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%97%B6%EF%BC%8C%E8%83%BD%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/"/>
+      <url>/2022/08/16/Github%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%97%B6%EF%BC%8C%E8%83%BD%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/</url>
+      
+        <content type="html"><![CDATA[<ol><li><a href="https://github.com/oldj/SwitchHosts">SwitchHosts</a>（点击进入github链接）</li></ol><p><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1660608674261-c3bf8d79-1556-4625-9064-b6c8bea9de44.png">右上角齿轮 -&gt; 检查更新 -&gt; 更新最新地址</p><ol start="2"><li><a href="https://www.dogfight360.com/blog/475/">UsbEAm Hosts Editor</a>——多平台hosts修改工具</li></ol><p><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1660611215864-674d3ecc-4d50-487e-b5d2-305fbb8eec57.png"></p><ol start="3"><li><a href="https://github.com/dotnetcore/FastGithub">FastGithub</a>——解决了我偶尔无法访问的问题</li></ol><p>github加速神器，解决github打不开、用户头像无法加载、releases无法上传下载、git-clone、git-pull、git-push失败等问题。<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1660611267730-f7f5f63a-3c7d-44ce-9116-52fb615c7850.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> tools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Github </tag>
+            
+            <tag> hosts </tag>
+            
+            <tag> ip </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>centos7网关配置</title>
       <link href="/2022/08/14/centos7%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/"/>
       <url>/2022/08/14/centos7%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/</url>
