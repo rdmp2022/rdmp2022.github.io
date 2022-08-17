@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Mybatis-Plus日志配置</title>
+      <link href="/2022/08/17/Mybatis-Plus%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE/"/>
+      <url>/2022/08/17/Mybatis-Plus%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<p>稀里糊涂解决了又一个问题<br />一般最让人头疼的不是爆红的bug，在编译器显示包括代码、与数据库连接一切正常的时候，也不报错，只是没有返回数据，这种连哪里出错都不知道，头疼。<br />所以可以通过在控制台直接输出mybatis-plus日志的方式进行查找问题所在。</p><figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置日志  打印sql语句</span></span><br><span class="line"><span class="attribute">mybatis-plus</span><span class="punctuation">:</span></span><br><span class="line">  <span class="attribute">configuration</span><span class="punctuation">:</span></span><br><span class="line">    <span class="attribute">log-impl</span><span class="punctuation">:</span> <span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mybatis-Plus </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> bug </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>一款工具 | 让idm无限trial的工具</title>
       <link href="/2022/08/17/%E4%B8%80%E6%AC%BE%E5%B7%A5%E5%85%B7%20_%20%E8%AE%A9idm%E6%97%A0%E9%99%90trial%E7%9A%84%E5%B7%A5%E5%85%B7/"/>
       <url>/2022/08/17/%E4%B8%80%E6%AC%BE%E5%B7%A5%E5%85%B7%20_%20%E8%AE%A9idm%E6%97%A0%E9%99%90trial%E7%9A%84%E5%B7%A5%E5%85%B7/</url>
