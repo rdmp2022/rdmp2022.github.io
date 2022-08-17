@@ -58,6 +58,33 @@
     
     
     <entry>
+      <title>太痛苦了！！！！一个愚蠢的bug记录</title>
+      <link href="/2022/08/16/%E5%A4%AA%E7%97%9B%E8%8B%A6%E4%BA%86%EF%BC%81%EF%BC%81%EF%BC%81/"/>
+      <url>/2022/08/16/%E5%A4%AA%E7%97%9B%E8%8B%A6%E4%BA%86%EF%BC%81%EF%BC%81%EF%BC%81/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>一杯茶一包烟，一个bug改了俩小时吧有</p></blockquote><p>在测试后端接口的登录功能时，用idea的自带模拟请求数据来发送请求结果报了404错误<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1660742781910-5d9f7c57-44b0-43ae-97d3-75cb3ae5cede.png">没一会反应过来头顶部分没改过来<code>/user/login</code><br />然后大喜过望，以为解决了但是没想到，什么都没有返回。<br />推理了所有可能出现的问题：数据库列名字不对、查询语句改了、关键字敲错了……各种找<br />穷途末路<br />最后发现在这个service层编写注册代码时的盐值写错了<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1660743010616-3a82add6-cefa-47f1-839d-050521508b6f.png">弄巧成拙，在提取公共部分本以为是降低重复代码量了，结果忘记把原来的盐值删掉，我还手贱改了盐值的内容<br /><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1660743049196-2c4db8f0-d900-4313-8193-188550de7d48.png">就因为这个加了两次密，导致在登录功能部分对登录密码加密时未能与数据库层的密码匹配，让我找了个好找…<br />最后终于解决了问题…服了…果然bug花的时间越久，解决后才知道自己多愚蠢。。。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> bug </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 改bug </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo Next Gemini侧边栏不显示问题</title>
       <link href="/2022/08/16/Hexo%20Next%20Gemini%E4%BE%A7%E8%BE%B9%E6%A0%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/"/>
       <url>/2022/08/16/Hexo%20Next%20Gemini%E4%BE%A7%E8%BE%B9%E6%A0%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
