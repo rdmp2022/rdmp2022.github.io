@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Session共享实现——引入Redis</title>
+      <link href="/2022/09/04/Session%E5%85%B1%E4%BA%AB%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94%E5%BC%95%E5%85%A5Redis/"/>
+      <url>/2022/09/04/Session%E5%85%B1%E4%BA%AB%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94%E5%BC%95%E5%85%A5Redis/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Session共享实现——引入Redis"><a href="#Session共享实现——引入Redis" class="headerlink" title="Session共享实现——引入Redis"></a>Session共享实现——引入Redis</h1><blockquote><p>前提是Redis服务已安装并启动</p></blockquote><ol><li>引入redis，能够操作redis</li></ol><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><ol start="2"><li>引入 spring-session 和 redis 的整合，使得自动将 session 存储到 redis 中：</li></ol><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework.session/spring-session-data-redis --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.session<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-session-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><ol start="3"><li>修改 spring-session 存储配置 <code>spring.session.store-type</code></li></ol><p>​默认是 none，表示存储在单台服务器</p><p>​store-type: redis，表示从 redis 读写 session</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+            <tag> ssm </tag>
+            
+            <tag> Session共享 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>用户中心项目——写点东西记录下来</title>
       <link href="/2022/08/18/%E7%94%A8%E6%88%B7%E4%B8%AD%E5%BF%83%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E5%86%99%E7%82%B9%E4%B8%9C%E8%A5%BF%E8%AE%B0%E5%BD%95%E4%B8%8B%E6%9D%A5/"/>
       <url>/2022/08/18/%E7%94%A8%E6%88%B7%E4%B8%AD%E5%BF%83%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E5%86%99%E7%82%B9%E4%B8%9C%E8%A5%BF%E8%AE%B0%E5%BD%95%E4%B8%8B%E6%9D%A5/</url>
