@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>关于 axios.defaults.withCredentials = true 不生效问题</title>
+      <link href="/2022/09/05/%E5%85%B3%E4%BA%8E%20axios.defaults.withCredentials%20=%20true%20%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/"/>
+      <url>/2022/09/05/%E5%85%B3%E4%BA%8E%20axios.defaults.withCredentials%20=%20true%20%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1662318600209-c6135cdb-18c7-4027-93a2-22a0ee0d6841.jpeg">在Vue开发过程中，跨域一直是无法避免的问题，跨域的解决可以通过：</p><p>后端设置允许跨域<br>前端设置反向代理<br />来进行解决，相关方法在百度上有很多，直接百度Ctrl+C  Ctrl+V即可.<br>但是关于在VUE项目中，后端使用SESSION的问题，因为后端使用SESSION是服务器端与浏览器端需要靠cookie的传递来实现鉴权识别，通过服务端在返回时发送set-cookie来自动设置到浏览器的cookie中，然后再之后请求的时候通过Request Headers中的cookie来识别SESSION信息，而在浏览器的协议中，cookie是只有在同源环境下，也就是不跨域的环境下才会自动请求带上cookie，而Vue的项目前后端分离的情况下，大部分情况是不同源的单独部署项目，所以无法自动带上cookie。而Vue全家桶使用的axios是有响应的解决方案的<br><code>axios.defaults.withCredentials = true; </code><br>通过设置这个参数来允许跨域的时候带上cookie信息</p><p><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1662318497269-fee391e2-e2fd-44c3-9b4b-2feeb5b477bc.png">但是在设置了这个参数之后还是出现了错误，那么还需要在后端配置如下<br /><code>@CrossOrigin(origins = &quot;http://127.0.0.1:5173&quot;,allowedHeaders = &quot;*&quot;,methods = &#123;&#125;,allowCredentials = &quot;true&quot;)</code></p><blockquote><p>这里的origins为前端端口号</p></blockquote><p>我是真的服…<br />一个这个东西搞了我好久哇！！！！！！！！！！！<br />redis的缓存里整整点了将近300词按钮….<br />吃一堑长一智<br><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/1662318689674-b65f7818-20df-4d67-bd97-71d88aa46aa2.jpeg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 跨域 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> bug </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Session共享实现——引入Redis</title>
       <link href="/2022/09/04/Session%E5%85%B1%E4%BA%AB%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94%E5%BC%95%E5%85%A5Redis/"/>
       <url>/2022/09/04/Session%E5%85%B1%E4%BA%AB%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94%E5%BC%95%E5%85%A5Redis/</url>
@@ -57,11 +82,11 @@
             
             <tag> blog </tag>
             
-            <tag> 前端 </tag>
-            
             <tag> java </tag>
             
             <tag> 后端 </tag>
+            
+            <tag> 前端 </tag>
             
         </tags>
       
