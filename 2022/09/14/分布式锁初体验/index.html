@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>分布式锁初体验 | Walker的个人博客</title><meta name="keywords" content="Redis,分布式,锁"><meta name="author" content="Walker"><meta name="copyright" content="Walker"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="为了解决定时任务在多台服务器中，同一时间只有一个服务器能执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式锁初体验">
+<meta property="og:url" content="https://rdmp2022.github.io/2022/09/14/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%88%9D%E4%BD%93%E9%AA%8C/index.html">
+<meta property="og:site_name" content="Walker的个人博客">
+<meta property="og:description" content="为了解决定时任务在多台服务器中，同一时间只有一个服务器能执行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/0FE9320E96D22E32E31F2697EF85784B.png">
+<meta property="article:published_time" content="2022-09-14T04:31:00.000Z">
+<meta property="article:modified_time" content="2022-09-14T04:53:31.558Z">
+<meta property="article:author" content="Walker">
+<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="分布式">
+<meta property="article:tag" content="锁">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/0FE9320E96D22E32E31F2697EF85784B.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://rdmp2022.github.io/2022/09/14/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%88%9D%E4%BD%93%E9%AA%8C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '分布式锁初体验',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-14 12:53:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/qz.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/0FE9320E96D22E32E31F2697EF85784B.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Walker的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">分布式锁初体验</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-14T04:31:00.000Z" title="发表于 2022-09-14 12:31:00">2022-09-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-14T04:53:31.558Z" title="更新于 2022-09-14 12:53:31">2022-09-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/Redis/">Redis</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="分布式锁初体验"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>技术选型初衷是为了控制定时任务能在同一时间只有一个服务器执行<br><a name="a022c534"></a></p>
+<h3 id="控制定时任务的执行"><a href="#控制定时任务的执行" class="headerlink" title="控制定时任务的执行"></a>控制定时任务的执行</h3><p>为啥？</p>
+<ol>
+<li>浪费资源，想象 10000 台服务器同时 “打鸣”</li>
+<li>脏数据，比如重复插入</li>
+</ol>
+<p><strong>要控制定时任务在同一时间只有 1 个服务器能执行。</strong></p>
+<p>怎么做？</p>
+<ol>
+<li>分离定时任务程序和主程序，只在 1 个服务器运行定时任务。成本太大 </li>
+<li>写死配置，每个服务器都执行定时任务，但是只有 ip 符合配置的服务器才真实执行业务逻辑，其他的直接返回。成本最低；但是我们的 IP 可能是不固定的，把 IP 写的太死了 </li>
+<li>动态配置，配置是可以轻松的、很方便地更新的（<strong>代码无需重启</strong>），但是只有 ip 符合配置的服务器才真实执行业务逻辑。</li>
+</ol>
+<ul>
+<li>数据库</li>
+<li>Redis</li>
+<li>配置中心（Nacos、Apollo、Spring Cloud Config）</li>
+</ul>
+<p>问题：服务器多了、IP 不可控还是很麻烦，还是要人工修改 </p>
+<ol start="4">
+<li>分布式锁，只有抢到锁的服务器才能执行业务逻辑。坏处：增加成本；好处：不用手动配置，多少个服务器都一样。</li>
+</ol>
+<p><strong>单机就会存在单点故障。</strong></p>
+<p><a name="75580fe8"></a></p>
+<h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><p>有限资源的情况下，控制同一时间（段）只有某些线程（用户 &#x2F; 服务器）能访问到资源。</p>
+<p>Java 实现锁：synchronized 关键字、并发包的类</p>
+<p>问题：只对单个 JVM 有效</p>
+<p><a name="334aa49e"></a></p>
+<h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><p>为啥需要分布式锁？</p>
+<ol>
+<li>有限资源的情况下，控制同一时间（段）只有某些线程（用户 &#x2F; 服务器）能访问到资源。</li>
+<li>单个锁只对单个 JVM 有效</li>
+</ol>
+<p><a name="0c676f59"></a></p>
+<h3 id="分布式锁实现的关键"><a href="#分布式锁实现的关键" class="headerlink" title="分布式锁实现的关键"></a>分布式锁实现的关键</h3><p><a name="6c732b47"></a></p>
+<h4 id="抢锁机制"><a href="#抢锁机制" class="headerlink" title="抢锁机制"></a>抢锁机制</h4><p>怎么保证同一时间只有 1 个服务器能抢到锁？</p>
+<p><strong>核心思想</strong> 就是：先来的人先把数据改成自己的标识（服务器 ip），后来的人发现标识已存在，就抢锁失败，继续等待。</p>
+<p>等先来的人执行方法结束，把标识清空，其他的人继续抢锁。</p>
+<p>MySQL 数据库：select for update 行级锁（最简单）</p>
+<p>（乐观锁）</p>
+<p>✔ Redis 实现：内存数据库，<strong>读写速度快</strong> 。支持 <strong>setnx</strong>、lua 脚本，比较方便我们实现分布式锁。</p>
+<p>setnx：set if not exists 如果不存在，则设置；只有设置成功才会返回 true，否则返回 false</p>
+<p><a name="1bbbb204"></a></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>用完锁要释放（腾地方）√ </li>
+<li><strong>锁一定要加过期时间 √</strong> </li>
+<li>如果方法执行时间过长，锁提前过期了？<br />问题： </li>
+<li>连锁效应：释放掉别人的锁</li>
+<li>这样还是会存在多个方法同时执行的情况</li>
+</ol>
+<pre><code>解决方案：续期
+</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="variable">end</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (!end)&#125;&#123;</span><br><span class="line">    续期</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">end = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>释放锁的时候，有可能先判断出是自己的锁，但这时锁过期了，最后还是释放了别人的锁 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原子操作</span></span><br><span class="line"><span class="keyword">if</span>(get lock == A) &#123;</span><br><span class="line">    <span class="comment">// set lock B</span></span><br><span class="line">    del lock</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br />Redis + lua 脚本实现 </p>
+</li>
+<li><p>Redis 如果是集群（而不是只有一个 Redis），如果分布式锁的数据不同步怎么办？</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/feiying0canglang/article/details/113258494">https://blog.csdn.net/feiying0canglang/article/details/113258494</a></p>
+<p><a name="490612e2"></a></p>
+<h4 id="拒绝自己写！！！"><a href="#拒绝自己写！！！" class="headerlink" title="拒绝自己写！！！"></a>拒绝自己写！！！</h4><p><a name="5ef7ac81"></a></p>
+<h3 id="Redisson-实现分布式锁"><a href="#Redisson-实现分布式锁" class="headerlink" title="Redisson 实现分布式锁"></a>Redisson 实现分布式锁</h3><p>Java 客户端，数据网格</p>
+<p>实现了很多 Java 里支持的接口和数据结构</p>
+<p>Redisson 是一个 java 操作 Redis 的客户端，<strong>提供了大量的分布式数据集来简化对 Redis 的操作和使用，可以让开发者像使用本地集合一样使用 Redis，完全感知不到 Redis 的存在。</strong></p>
+<p><a name="1ed4a455"></a></p>
+<h4 id="2-种引入方式"><a href="#2-种引入方式" class="headerlink" title="2 种引入方式"></a>2 种引入方式</h4><ol>
+<li>spring boot starter 引入（不推荐，版本迭代太快，容易冲突）<a target="_blank" rel="noopener" href="https://github.com/redisson/redisson/tree/master/redisson-spring-boot-starter">https://github.com/redisson/redisson/tree/master/redisson-spring-boot-starter</a></li>
+<li>直接引入：<a target="_blank" rel="noopener" href="https://github.com/redisson/redisson#quick-start">https://github.com/redisson/redisson#quick-start</a></li>
+</ol>
+<p><a name="34577a27"></a></p>
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// list，数据存在本地 JVM 内存中</span></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.<span class="keyword">add</span>(<span class="string">&quot;yupi&quot;</span>);</span><br><span class="line">System.<span class="keyword">out</span>.println(<span class="string">&quot;list:&quot;</span> + list.<span class="keyword">get</span>(<span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">list.<span class="keyword">remove</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据存在 redis 的内存中</span></span><br><span class="line">RList&lt;String&gt; rList = redissonClient.getList(<span class="string">&quot;test-list&quot;</span>);</span><br><span class="line">rList.<span class="keyword">add</span>(<span class="string">&quot;yupi&quot;</span>);</span><br><span class="line">System.<span class="keyword">out</span>.println(<span class="string">&quot;rlist:&quot;</span> + rList.<span class="keyword">get</span>(<span class="number">0</span>));</span><br><span class="line">rList.<span class="keyword">remove</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p><a name="0d4dcf6c"></a></p>
+<h3 id="定时任务-锁"><a href="#定时任务-锁" class="headerlink" title="定时任务  + 锁"></a>定时任务  + 锁</h3><ol>
+<li>waitTime 设置为 0，只抢一次，抢不到就放弃</li>
+<li>注意释放锁要写在 finally 中</li>
+</ol>
+<p><a name="29bed2b8"></a></p>
+<h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">void test<span class="constructor">WatchDog()</span> &#123;</span><br><span class="line">    RLock lock = redissonClient.get<span class="constructor">Lock(<span class="string">&quot;yupao:precachejob:docache:lock&quot;</span>)</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 只有一个线程能获取到锁</span></span><br><span class="line">        <span class="keyword">if</span> (lock.<span class="keyword">try</span><span class="constructor">Lock(0, -1, TimeUnit.MILLISECONDS)</span>) &#123;</span><br><span class="line">            <span class="comment">// todo 实际要执行的方法</span></span><br><span class="line">            <span class="keyword">do</span><span class="constructor">SomeThings()</span>;</span><br><span class="line">            <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;getLock: &quot;</span> + <span class="module-access"><span class="module"><span class="identifier">Thread</span>.</span></span>current<span class="constructor">Thread()</span>.get<span class="constructor">Id()</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (InterruptedException e) &#123;</span><br><span class="line">        <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(e.get<span class="constructor">Message()</span>);</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        <span class="comment">// 只能释放自己的锁</span></span><br><span class="line">        <span class="keyword">if</span> (lock.is<span class="constructor">HeldByCurrentThread()</span>) &#123;</span><br><span class="line">            <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">&quot;unLock: &quot;</span> + <span class="module-access"><span class="module"><span class="identifier">Thread</span>.</span></span>current<span class="constructor">Thread()</span>.get<span class="constructor">Id()</span>);</span><br><span class="line">            lock.unlock<span class="literal">()</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a name="e99d6175"></a></p>
+<h3 id="看门狗机制"><a href="#看门狗机制" class="headerlink" title="看门狗机制"></a>看门狗机制</h3><blockquote>
+<p>redisson 中提供的续期机制</p>
+</blockquote>
+<p>开一个监听线程，如果方法还没执行完，就帮你重置 redis 锁的过期时间。</p>
+<p>原理：</p>
+<ol>
+<li>监听当前线程，默认过期时间是 30 秒，每 10 秒续期一次（补到 30 秒）</li>
+<li>如果线程挂掉（注意 debug 模式也会被它当成服务器宕机），则不会续期</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26222859/article/details/79645203">https://blog.csdn.net/qq_26222859&#x2F;article&#x2F;details&#x2F;79645203</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://rdmp2022.github.io">Walker</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://rdmp2022.github.io/2022/09/14/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%88%9D%E4%BD%93%E9%AA%8C/">https://rdmp2022.github.io/2022/09/14/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%88%9D%E4%BD%93%E9%AA%8C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://rdmp2022.github.io" target="_blank">Walker的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Redis/">Redis</a><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a><a class="post-meta__tags" href="/tags/%E9%94%81/">锁</a></div><div class="post_share"><div class="social-share" data-image="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/0FE9320E96D22E32E31F2697EF85784B.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/09/05/%E5%85%B3%E4%BA%8E%20axios.defaults.withCredentials%20=%20true%20%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/"><img class="next-cover" src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/0FE9320E96D22E32E31F2697EF85784B.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">关于 axios.defaults.withCredentials = true 不生效问题</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/09/04/Session%E5%85%B1%E4%BA%AB%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94%E5%BC%95%E5%85%A5Redis/" title="Session共享实现——引入Redis"><img class="cover" src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/0FE9320E96D22E32E31F2697EF85784B.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-04</div><div class="title">Session共享实现——引入Redis</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/5641/qz.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Walker</div><div class="author-info__description">那我慢慢走吧</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/rdmp2022" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:lixiangdyyd@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="toc-number">1.</span> <span class="toc-text">控制定时任务的执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%81"><span class="toc-number">2.</span> <span class="toc-text">锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-number">3.</span> <span class="toc-text">分布式锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%85%B3%E9%94%AE"><span class="toc-number">4.</span> <span class="toc-text">分布式锁实现的关键</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A2%E9%94%81%E6%9C%BA%E5%88%B6"><span class="toc-number">4.1.</span> <span class="toc-text">抢锁机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">5.</span> <span class="toc-text">注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%92%E7%BB%9D%E8%87%AA%E5%B7%B1%E5%86%99%EF%BC%81%EF%BC%81%EF%BC%81"><span class="toc-number">5.1.</span> <span class="toc-text">拒绝自己写！！！</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redisson-%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-number">6.</span> <span class="toc-text">Redisson 实现分布式锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%A7%8D%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="toc-number">6.1.</span> <span class="toc-text">2 种引入方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">6.2.</span> <span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1-%E9%94%81"><span class="toc-number">7.</span> <span class="toc-text">定时任务  + 锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="toc-number">8.</span> <span class="toc-text">实现代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%8B%E9%97%A8%E7%8B%97%E6%9C%BA%E5%88%B6"><span class="toc-number">9.</span> <span class="toc-text">看门狗机制</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/14/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%88%9D%E4%BD%93%E9%AA%8C/" title="分布式锁初体验">分布式锁初体验</a><time datetime="2022-09-14T04:31:00.000Z" title="发表于 2022-09-14 12:31:00">2022-09-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/05/%E5%85%B3%E4%BA%8E%20axios.defaults.withCredentials%20=%20true%20%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/" title="关于 axios.defaults.withCredentials = true 不生效问题">关于 axios.defaults.withCredentials = true 不生效问题</a><time datetime="2022-09-04T19:21:24.000Z" title="发表于 2022-09-05 03:21:24">2022-09-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/04/Session%E5%85%B1%E4%BA%AB%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94%E5%BC%95%E5%85%A5Redis/" title="Session共享实现——引入Redis">Session共享实现——引入Redis</a><time datetime="2022-09-04T06:31:00.000Z" title="发表于 2022-09-04 14:31:00">2022-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/18/%E7%94%A8%E6%88%B7%E4%B8%AD%E5%BF%83%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E5%86%99%E7%82%B9%E4%B8%9C%E8%A5%BF%E8%AE%B0%E5%BD%95%E4%B8%8B%E6%9D%A5/" title="用户中心项目——写点东西记录下来">用户中心项目——写点东西记录下来</a><time datetime="2022-08-18T13:05:23.000Z" title="发表于 2022-08-18 21:05:23">2022-08-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/Mybatis-Plus%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE/" title="Mybatis-Plus日志配置">Mybatis-Plus日志配置</a><time datetime="2022-08-17T15:11:24.000Z" title="发表于 2022-08-17 23:11:24">2022-08-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By Walker</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">这里不变，我心里就还有你。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
